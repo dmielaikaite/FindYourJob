@@ -5,7 +5,7 @@ class MainPage extends Component{
   render() {
     return (
       <div className="mainPageContent">
-        <Image src={'/src/assets/mountains.png'} responsive />
+        <Image src={'/src/assets/coverPhoto.jpg'} responsive />
       </div>
     );
   }
