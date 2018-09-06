@@ -35,13 +35,13 @@ class FormContainer extends Component {
 
   render(){
     return (
-      <form className="registrationForm" onSubmit={this.props.handleFormSubmit}>
+      <form role="form" data-toggle="validator" onSubmit={this.props.handleFormSubmit}>
         <Input type={'text'}
                title= {'User name'}
                name= {'username'}
                value={this.state.newUser.username}
                placeholder = {'Enter your username'}
-               handleChange = {this.handleFieldChage} />
+               handleChange = {this.handleFieldChage}/>
          <Input type={'password'}
                 title= {'Password'}
                 name= {'password'}
@@ -59,7 +59,8 @@ class FormContainer extends Component {
                name= {'email'}
                value={this.state.newUser.email}
                placeholder = {'Enter your email address'}
-               handleChange = {this.handleFieldChage} />
+               handleChange = {this.handleFieldChage}
+             />
          <Select title={'Gender'}
                 name={'gender'}
                 options = {this.state.genderOptions}

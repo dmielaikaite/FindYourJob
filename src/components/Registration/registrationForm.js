@@ -14,11 +14,13 @@ class RegistrationModal extends Component{
         confirmedPassword: '',
         email: '',
         gender: ''
-      }
+      },
+      errors: [],
     };
     this.closeModal = this.closeModal.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleData = this.handleData.bind(this);
+    this.validate = this.validate.bind(this);
   }
 
   componentWillReceiveProps(nextprops){
@@ -43,10 +45,22 @@ class RegistrationModal extends Component{
     this.setState({ newUser : data });
   }
 
+  validate(newUser){
+    const errors = [];
+    if (newUser.username.length === 0){
+      errors.push("Username is is required");
+    }
+    return errors;
+  }
+
   handleFormSubmit(e){
     e.preventDefault();
-    let userData = this.state.newUser;
-    console.log('newUser at handleFormSubmit', userData);
+    let newUser = this.state.newUser;
+    const errors = this.validate(newUser);
+    // if (errors.length > 0) {
+    //   this.setState({ errors });
+    //   return;
+    // }
   }
 
   render(){
@@ -58,6 +72,9 @@ class RegistrationModal extends Component{
             </Modal.Header>
 
             <Modal.Body>
+              {this.state.errors.map(error => (
+                <p key={error}>Error: {error}</p>
+                ))}
               <FormContainer dataHandler={this.handleData} handleFormSubmit={this.handleFormSubmit}/>
             </Modal.Body>
 
