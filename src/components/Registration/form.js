@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../FormFields/input.js';
+import Select from '../FormFields/select.js';
 
 class FormContainer extends Component {
 
@@ -11,7 +12,8 @@ class FormContainer extends Component {
         password: '',
         email: '',
         gender: ''
-      }
+      },
+      genderOptions: ["Male", "Female", "Other"]
     }
 
     this.handleFieldChage = this.handleFieldChage.bind(this);
@@ -52,12 +54,12 @@ class FormContainer extends Component {
                value={this.state.newUser.email}
                placeholder = {'Enter your email address'}
                handleChange = {this.handleFieldChage} />
-       <Input type={'text'}
-              title= {'Gender'}
-              name= {'gender'}
-              value={this.state.newUser.gender}
-              placeholder = {'Enter your gender'}
-              handleChange = {this.handleFieldChage} />
+         <Select title={'Gender'}
+                name={'gender'}
+                options = {this.state.genderOptions}
+                value = {this.state.newUser.gender}
+                placeholder = {'Select Gender'}
+                handleChange = {this.handleFieldChage}/>
       </form>
     )
   }
