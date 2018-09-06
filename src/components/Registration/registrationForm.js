@@ -7,16 +7,46 @@ class RegistrationModal extends Component{
 
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      newUser: {
+        username: '',
+        password: '',
+        confirmedPassword: '',
+        email: '',
+        gender: ''
+      }
+    };
     this.closeModal = this.closeModal.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleData = this.handleData.bind(this);
   }
 
   componentWillReceiveProps(nextprops){
     this.setState(nextprops);
   }
 
-  closeModal() {
+  closeModal(e) {
+    e.preventDefault();
     this.setState({ isModalOpen : false });
+    this.setState({
+      newUser: {
+        username: '',
+        password: '',
+        confirmedPassword: '',
+        email: '',
+        gender: ''
+      }
+    })
+  }
+
+  handleData(data){
+    this.setState({ newUser : data });
+  }
+
+  handleFormSubmit(e){
+    e.preventDefault();
+    let userData = this.state.newUser;
+    console.log('newUser at handleFormSubmit', userData);
   }
 
   render(){
@@ -28,12 +58,12 @@ class RegistrationModal extends Component{
             </Modal.Header>
 
             <Modal.Body>
-              <FormContainer/>
+              <FormContainer dataHandler={this.handleData} handleFormSubmit={this.handleFormSubmit}/>
             </Modal.Body>
 
             <Modal.Footer>
               <Button bsStyle="primary" onClick={this.closeModal}>Close</Button>
-              <Button bsStyle="success" onClick={this.closeModal}>Submit</Button>
+              <Button bsStyle="success" onClick={this.handleFormSubmit}>Submit</Button>
             </Modal.Footer>
         </Modal>
       </div>

@@ -26,16 +26,16 @@ class FormContainer extends Component {
        return {
           newUser : {
                    ...prevState.newUser, [name]: value
-                  }
+                 }
        }
-    }, () => console.log(this.state.newUser)
+    }, () => this.props.dataHandler(this.state.newUser)
+
     )
   }
 
-
   render(){
     return (
-      <form className="registrationForm">
+      <form className="registrationForm" onSubmit={this.props.handleFormSubmit}>
         <Input type={'text'}
                title= {'User name'}
                name= {'username'}
