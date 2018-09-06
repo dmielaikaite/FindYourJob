@@ -10,12 +10,12 @@ class FormContainer extends Component {
       newUser: {
         username: '',
         password: '',
+        confirmedPassword: '',
         email: '',
         gender: ''
       },
       genderOptions: ["Male", "Female", "Other"]
     }
-
     this.handleFieldChage = this.handleFieldChage.bind(this);
   }
 
@@ -48,6 +48,12 @@ class FormContainer extends Component {
                 value={this.state.newUser.password}
                 placeholder = {'Enter your password'}
                 handleChange = {this.handleFieldChage} />
+        <Input type={'password'}
+               title= {'Confirm password'}
+               name= {'confirmedPassword'}
+               value={this.state.newUser.confirmedPassword}
+               placeholder = {'Enter your confirmed password'}
+               handleChange = {this.handleFieldChage} />
         <Input type={'email'}
                title= {'Email address'}
                name= {'email'}
