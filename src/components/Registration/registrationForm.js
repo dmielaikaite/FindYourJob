@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
+import FormContainer from './form.js';
 
 class RegistrationModal extends Component{
 
@@ -14,16 +15,26 @@ class RegistrationModal extends Component{
     this.setState(nextprops);
   }
 
-  closeModal = () => {
+  closeModal() {
     this.setState({ isModalOpen : false });
   }
 
   render(){
     return(
-      <div>
+      <div className="static-modal">
         <Modal show={this.state.isModalOpen}>
-          Modal
-          <Button onClick={this.closeModal}>Close</Button>
+            <Modal.Header>
+              <Modal.Title>Registration</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+              <FormContainer/>
+            </Modal.Body>
+
+            <Modal.Footer>
+              <Button bsStyle="primary" onClick={this.closeModal}>Close</Button>
+              <Button bsStyle="success" onClick={this.closeModal}>Submit</Button>
+            </Modal.Footer>
         </Modal>
       </div>
     );
