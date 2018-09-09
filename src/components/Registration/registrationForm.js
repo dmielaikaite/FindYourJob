@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import FormContainer from './form.js';
+import { handleValidation } from './validation.js';
 
 class RegistrationModal extends Component{
 
@@ -20,7 +21,6 @@ class RegistrationModal extends Component{
     this.closeModal = this.closeModal.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleData = this.handleData.bind(this);
-    this.validate = this.validate.bind(this);
   }
 
   componentWillReceiveProps(nextprops){
@@ -37,7 +37,8 @@ class RegistrationModal extends Component{
         confirmedPassword: '',
         email: '',
         gender: ''
-      }
+      },
+      errors: {}
     })
   }
 
@@ -45,22 +46,13 @@ class RegistrationModal extends Component{
     this.setState({ newUser : data });
   }
 
-  validate(newUser){
-    const errors = [];
-    if (newUser.username.length === 0){
-      errors.push("Username is is required");
-    }
-    return errors;
-  }
-
   handleFormSubmit(e){
     e.preventDefault();
     let newUser = this.state.newUser;
-    const errors = this.validate(newUser);
-    // if (errors.length > 0) {
-    //   this.setState({ errors });
-    //   return;
-    // }
+    if (handleValidation(newUser).isFormValid){
+      console.log('user passsed validation, need to call http request here');
+    }
+    this.setState({errors: handleValidation(this.state.newUser).errors});
   }
 
   render(){
@@ -72,10 +64,9 @@ class RegistrationModal extends Component{
             </Modal.Header>
 
             <Modal.Body>
-              {this.state.errors.map(error => (
-                <p key={error}>Error: {error}</p>
-                ))}
-              <FormContainer dataHandler={this.handleData} handleFormSubmit={this.handleFormSubmit}/>
+              <FormContainer dataHandler={this.handleData}
+                             handleFormSubmit={this.handleFormSubmit}
+                             errors={this.state.errors}/>
             </Modal.Body>
 
             <Modal.Footer>
