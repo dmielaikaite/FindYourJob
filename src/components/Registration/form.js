@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Input from '../FormFields/input.js';
 import Select from '../FormFields/select.js';
 import Error from '../FormFields/error.js';
+import PropTypes from 'prop-types';
 
 class FormContainer extends Component {
 
@@ -36,7 +37,7 @@ class FormContainer extends Component {
 
   render(){
     return (
-      <form role="form" data-toggle="validator" onSubmit={this.props.handleFormSubmit}>
+      <form role="form" onSubmit={this.props.handleFormSubmit}>
         <Input type={'text'}
                title= {'User name'}
                name= {'username'}
@@ -75,7 +76,12 @@ class FormContainer extends Component {
       </form>
     )
   }
+}
 
+FormContainer.propTypes = {
+  handleFormSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.object,
+  dataHandler: PropTypes.func.isRequired
 }
 
 export default FormContainer;

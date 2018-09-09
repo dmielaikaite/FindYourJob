@@ -16,7 +16,7 @@ class RegistrationModal extends Component{
         email: '',
         gender: ''
       },
-      errors: [],
+      errors: {},
     };
     this.closeModal = this.closeModal.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -29,7 +29,7 @@ class RegistrationModal extends Component{
 
   closeModal(e) {
     e.preventDefault();
-    this.setState({ isModalOpen : false });
+    this.setState({ isRegisterModalOpen : false });
     this.setState({
       newUser: {
         username: '',
@@ -51,7 +51,7 @@ class RegistrationModal extends Component{
     let newUser = this.state.newUser;
     if (handleValidation(newUser).isFormValid){
       console.log('user passsed validation, need to call http request here');
-      this.setState({ isModalOpen : false });
+      this.closeModal(e);
     }
     this.setState({errors: handleValidation(this.state.newUser).errors});
   }
@@ -59,7 +59,7 @@ class RegistrationModal extends Component{
   render(){
     return(
       <div className="static-modal">
-        <Modal show={this.state.isModalOpen}>
+        <Modal show={this.state.isRegisterModalOpen}>
             <Modal.Header>
               <Modal.Title>Registration</Modal.Title>
             </Modal.Header>
@@ -81,7 +81,7 @@ class RegistrationModal extends Component{
 }
 
 RegistrationModal.propTypes = {
-  isModalOpen: PropTypes.bool.isRequired
+  isRegisterModalOpen: PropTypes.bool.isRequired
 };
 
 export default RegistrationModal;
