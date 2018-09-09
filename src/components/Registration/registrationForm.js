@@ -51,6 +51,7 @@ class RegistrationModal extends Component{
     let newUser = this.state.newUser;
     if (handleValidation(newUser).isFormValid){
       console.log('user passsed validation, need to call http request here');
+      this.setState({ isModalOpen : false });
     }
     this.setState({errors: handleValidation(this.state.newUser).errors});
   }

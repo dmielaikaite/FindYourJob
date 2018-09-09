@@ -1,4 +1,5 @@
 import React from 'react';
+import Error from './error.js';
 
 const Select = (props) => {
   return(
@@ -21,6 +22,7 @@ const Select = (props) => {
           );
         })}
       </select>
+      <Error errorText={props.errorText}/>
     </div>
   )
 }

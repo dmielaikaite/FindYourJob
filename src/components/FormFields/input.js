@@ -1,4 +1,5 @@
 import React from 'react';
+import Error from './error.js';
 
 const Input = (props) => {
     return(
@@ -12,6 +13,7 @@ const Input = (props) => {
           value={props.value}
           onChange={props.handleChange}
           placeholder={props.placeholder}/>
+          <Error errorText={props.errorText}/>
       </div>
     )
 }
