@@ -36,7 +36,7 @@ class Header extends Component {
           </Navbar.Header>
           <Nav pullRight>
             <NavItem onClick={ this.openRegistrationModal } href="#">
-              Register {this.state.isRegisterButtonClicked.toString()}
+              Register
             </NavItem>
             <NavItem onClick={ this.openSignInModal } href="#">
               Sign in
