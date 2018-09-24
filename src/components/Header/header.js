@@ -31,7 +31,7 @@ class Header extends Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#home">FindYourJob</a>
+              <a href="#home">BorrowForSec</a>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav pullRight>
