@@ -71,7 +71,7 @@ class RegistrationModal extends Component{
     let newUser = this.state.newUser;
     if (handleValidation(newUser).isFormValid){
       this.apiCall(newUser);
-      // this.closeModal(e);
+      this.closeModal(e);
     }
     this.setState({errors: handleValidation(this.state.newUser).errors});
   }

@@ -1,6 +1,7 @@
 import flask
 from flask import request, jsonify
-import MySQLdb;
+import MySQLdb
+import uuid
 
 
 app = flask.Flask(__name__)
@@ -58,12 +59,13 @@ def home():
 @app.route('/api/addUser', methods=['POST'])
 def addUser():
     json_data = request.get_json(force=True)
+    userUuid = uuid.uuid4()
     username = json_data['username']
     password = json_data['password']
     email = json_data['email']
     gender = json_data['gender']
-    sql = "INSERT INTO users (username, password, email, gender) VALUES (%s, %s,%s, %s)"
-    val = (username, password, email, gender)
+    sql = "INSERT INTO users (uuid, username, password, email, gender) VALUES (%s, %s,%s, %s, %s)"
+    val = (userUuid, username, password, email, gender)
     c.execute(sql, val)
     con.commit()
     return '201'
