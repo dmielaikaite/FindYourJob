@@ -55,15 +55,15 @@ def home():
 #     print("DONATA")
 #     return jsonify(data)
 
-@app.route('/api/addUser', methods=['GET', 'POST'])
+@app.route('/api/addUser', methods=['POST'])
 def addUser():
     json_data = request.get_json(force=True)
     username = json_data['username']
     password = json_data['password']
     email = json_data['email']
     gender = json_data['gender']
-    sql = "INSERT INTO users (username, password) VALUES (%s, %s)"
-    val = (username, password)
+    sql = "INSERT INTO users (username, password, email, gender) VALUES (%s, %s,%s, %s)"
+    val = (username, password, email, gender)
     c.execute(sql, val)
     con.commit()
     return '201'

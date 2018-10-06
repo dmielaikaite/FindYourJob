@@ -49,7 +49,7 @@ class RegistrationModal extends Component{
   apiCall(data){
     fetch('http://127.0.0.1:5000/api/addUser', {
       method: 'POST',
-      mode: 'cors',
+      mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -61,17 +61,15 @@ class RegistrationModal extends Component{
         email: data.email,
         gender: data.gender
       })
-      .then(function(response) {
-        return console.log('success');;
-        })
-    console.log('apiCall', data);
+    }).then(function(response) {
+      return response;
+    }).catch(err => {return err})
   }
 
   handleFormSubmit(e){
     e.preventDefault();
     let newUser = this.state.newUser;
     if (handleValidation(newUser).isFormValid){
-      console.log('user passsed validation, need to call http request here');
       this.apiCall(newUser);
       // this.closeModal(e);
     }
