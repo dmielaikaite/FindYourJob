@@ -46,12 +46,34 @@ class RegistrationModal extends Component{
     this.setState({ newUser : data });
   }
 
+  apiCall(data){
+    fetch('http://127.0.0.1:5000/api/addUser', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':'*'
+      },
+      body: JSON.stringify({
+        username: data.username,
+        password: data.password,
+        email: data.email,
+        gender: data.gender
+      })
+      .then(function(response) {
+        return console.log('success');;
+        })
+    console.log('apiCall', data);
+  }
+
   handleFormSubmit(e){
     e.preventDefault();
     let newUser = this.state.newUser;
     if (handleValidation(newUser).isFormValid){
       console.log('user passsed validation, need to call http request here');
-      this.closeModal(e);
+      this.apiCall(newUser);
+      // this.closeModal(e);
     }
     this.setState({errors: handleValidation(this.state.newUser).errors});
   }

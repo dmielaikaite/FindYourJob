@@ -44,15 +44,34 @@ def home():
 
 
 # A route to return all of the available entries in our catalog.
-@app.route('/api/v1/resources/books/all', methods=['GET'])
-def api_all():
-    return jsonify(books)
+# @app.route('/api/v1/resources/books/all', methods=['GET'])
+# def api_all():
+#     return jsonify(books)
 
-@app.route('/api/users', methods=['GET'])
-def api_users():
-    c.execute("SELECT * FROM Persons")
-    data = c.fetchall()
-    print("DONATA")
-    return jsonify(data)
+# @app.route('/api/users', methods=['GET'])
+# def api_users():
+#     c.execute("SELECT * FROM Persons")
+#     data = c.fetchall()
+#     print("DONATA")
+#     return jsonify(data)
+
+@app.route('/api/addUser', methods=['GET', 'POST'])
+def addUser():
+    json_data = request.get_json(force=True)
+    username = json_data['username']
+    password = json_data['password']
+    email = json_data['email']
+    gender = json_data['gender']
+    sql = "INSERT INTO users (username, password) VALUES (%s, %s)"
+    val = (username, password)
+    c.execute(sql, val)
+    con.commit()
+    return '201'
+
+@app.route('/api/reload')
+def reload():
+    global to_reload
+    to_reload = True
+    return "reloaded"
 
 app.run()
