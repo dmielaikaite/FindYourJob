@@ -22,19 +22,6 @@ c, con = connection()
 def home():
     return "Donata"
 
-
-# A route to return all of the available entries in our catalog.
-# @app.route('/api/v1/resources/books/all', methods=['GET'])
-# def api_all():
-#     return jsonify(books)
-
-# @app.route('/api/users', methods=['GET'])
-# def api_users():
-#     c.execute("SELECT * FROM Persons")
-#     data = c.fetchall()
-#     print("DONATA")
-#     return jsonify(data)
-
 @app.route('/api/addUser', methods=['POST'])
 def addUser():
     json_data = request.get_json(force=True)
