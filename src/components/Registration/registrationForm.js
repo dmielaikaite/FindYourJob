@@ -52,8 +52,7 @@ class RegistrationModal extends Component{
       mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin':'*'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         username: data.username,
@@ -71,7 +70,7 @@ class RegistrationModal extends Component{
     let newUser = this.state.newUser;
     if (handleValidation(newUser).isFormValid){
       this.apiCall(newUser);
-      this.closeModal(e);
+      // this.closeModal(e);
     }
     this.setState({errors: handleValidation(this.state.newUser).errors});
   }
