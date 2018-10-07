@@ -49,7 +49,6 @@ class RegistrationModal extends Component{
   apiCall(data){
     fetch('http://127.0.0.1:5000/api/addUser', {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -61,7 +60,8 @@ class RegistrationModal extends Component{
         gender: data.gender
       })
     }).then(function(response) {
-      return response;
+      console.log(response.json());
+      // return response.json();
     }).catch(err => {return err})
   }
 

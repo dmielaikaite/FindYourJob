@@ -1,10 +1,13 @@
 import flask
-from flask import request, jsonify
+from flask import request, jsonify, json, Response
 import MySQLdb
 import uuid
+from flask_cors import CORS, cross_origin
+
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
+CORS(app)
 
 def connection():
     conn = MySQLdb.connect(
@@ -53,7 +56,7 @@ def getUser():
         newResponseObject['email']= data[0][3]
         newResponseObject['password']= data[0][4]
         newResponseObject['gender']= data[0][5]
-    return jsonify([newResponseObject])
+    return jsonify(newResponseObject)
 
 @app.route('/api/reload')
 def reload():

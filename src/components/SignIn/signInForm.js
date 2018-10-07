@@ -15,6 +15,15 @@ class SignInModal extends Component{
         password: ''
       },
       errors: {},
+      user : {
+        "email": "",
+        "gender": "",
+        "ok": true,
+        "password": "",
+        "userID": 1,
+        "username": "",
+        "uuid": ""
+      }
     };
     this.closeModal = this.closeModal.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -33,7 +42,7 @@ class SignInModal extends Component{
         email: '',
         password: ''
       },
-      errors: {}
+      errors: {},
     })
   }
 
@@ -42,10 +51,8 @@ class SignInModal extends Component{
   }
 
   apiCall(data){
-    console.log(data);
     fetch('http://127.0.0.1:5000/api/getUser', {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -54,18 +61,26 @@ class SignInModal extends Component{
         email: data.email,
         password: data.password
       })
-    }).then( response => {
-      console.log(response);
-    }).then(function(data){
-      const myObject = data;
-      // added work around, need to fix it
-      window.location.replace("http://localhost:8080/test");
-    }).catch(err => {return err})
+    })
+    .then( (response) => {
+       return response.json()
+    })
+    .then( (json) => {
+       this.setState({
+          user: json
+       })
+       console.log('parsed json', json)
+    })
+    .catch( (ex) => {
+       console.log('parsing failed', ex)
+    })
+    console.log(this.state)
   }
 
   handleFormSubmit(e){
+    e.preventDefault();
     let existingUser = this.state.existingUser;
-    (this.apiCall(existingUser))
+    this.apiCall(existingUser);
   }
 
   render(){
