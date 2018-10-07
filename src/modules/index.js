@@ -1,0 +1,15 @@
+import { combineReducers } from 'redux'
+
+const rehydrated = (state = false , action) => {
+    switch (action.type) {
+        case "persist/REHYDRATE" :
+            return true;
+            break;
+        default:
+            return state;
+    }
+}
+
+export default combineReducers({
+    rehydrated
+});

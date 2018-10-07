@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
+
 import FormContainer from './form.js';
+
 
 class SignInModal extends Component{
 
@@ -52,14 +54,18 @@ class SignInModal extends Component{
         email: data.email,
         password: data.password
       })
-    }).then(function(response) {
-      return console.log(response);
+    }).then( response => {
+      console.log(response);
+    }).then(function(data){
+      const myObject = data;
+      // added work around, need to fix it
+      window.location.replace("http://localhost:8080/test");
     }).catch(err => {return err})
   }
 
   handleFormSubmit(e){
     let existingUser = this.state.existingUser;
-    this.apiCall(existingUser);
+    (this.apiCall(existingUser))
   }
 
   render(){
