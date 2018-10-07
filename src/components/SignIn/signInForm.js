@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/user.js';
+
 
 import FormContainer from './form.js';
-
 
 class SignInModal extends Component{
 
@@ -15,15 +17,6 @@ class SignInModal extends Component{
         password: ''
       },
       errors: {},
-      user : {
-        "email": "",
-        "gender": "",
-        "ok": true,
-        "password": "",
-        "userID": 1,
-        "username": "",
-        "uuid": ""
-      }
     };
     this.closeModal = this.closeModal.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -50,37 +43,11 @@ class SignInModal extends Component{
     this.setState({ existingUser : data });
   }
 
-  apiCall(data){
-    fetch('http://127.0.0.1:5000/api/getUser', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: data.email,
-        password: data.password
-      })
-    })
-    .then( (response) => {
-       return response.json()
-    })
-    .then( (json) => {
-       this.setState({
-          user: json
-       })
-       console.log('parsed json', json)
-    })
-    .catch( (ex) => {
-       console.log('parsing failed', ex)
-    })
-    console.log(this.state)
-  }
-
   handleFormSubmit(e){
     e.preventDefault();
     let existingUser = this.state.existingUser;
-    this.apiCall(existingUser);
+    let getUserURL = 'http://127.0.0.1:5000/api/getUser';
+    this.props.dispatch(actions.fetchUserData(getUserURL,existingUser));
   }
 
   render(){
@@ -108,7 +75,14 @@ class SignInModal extends Component{
 }
 
 SignInModal.propTypes = {
-  isSignInModalOpen: PropTypes.bool.isRequired,
+  isSignInModalOpen: PropTypes.bool.isRequired
 }
 
-export default SignInModal;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        hasErrored: state.userHasError
+    };
+};
+
+export default connect(mapStateToProps)(SignInModal);
