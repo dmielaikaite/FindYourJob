@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PrivateUser extends Component{
+class MainPage extends Component{
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class PrivateUser extends Component{
   }
 }
 
-export default PrivateUser;
+export default MainPage;

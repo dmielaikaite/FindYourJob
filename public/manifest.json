@@ -1,5 +1,5 @@
 {
-  "short_name": "FindYourJob",
+  "short_name": "MyApp",
   "name": "React App",
   "start_url": "./index.html",
   "display": "standalone",

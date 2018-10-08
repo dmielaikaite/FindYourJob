@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/user.js';
-
+import { Redirect } from 'react-router-dom'
 
 import FormContainer from './form.js';
 
@@ -17,6 +17,7 @@ class SignInModal extends Component{
         password: ''
       },
       errors: {},
+      isUserFetched: false,
     };
     this.closeModal = this.closeModal.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -36,6 +37,7 @@ class SignInModal extends Component{
         password: ''
       },
       errors: {},
+      isUserFetched: false
     })
   }
 
@@ -48,9 +50,15 @@ class SignInModal extends Component{
     let existingUser = this.state.existingUser;
     let getUserURL = 'http://127.0.0.1:5000/api/getUser';
     this.props.dispatch(actions.fetchUserData(getUserURL,existingUser));
+    this.setState({isUserFetched : true});
   }
 
   render(){
+
+    if(this.state.isUserFetched){
+      return <Redirect to='/private' />;
+    }
+
     return(
       <div className="static-modal">
         <Modal show={this.state.isSignInModalOpen}>
