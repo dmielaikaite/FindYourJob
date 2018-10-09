@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
+import {Grid, Row, Col} from 'react-bootstrap';
+
+import Header from './header.js';
+import LatestNews from './LatestNews/latestNews.js';
+import Topics from './LatestNews/topics.js';
 
 class MainPage extends Component{
   render() {
     return (
       <div>
-        hey, this is my main page after login
+        <Header/>
+        <Grid>
+          <Row>
+            <Col xs={12} md={9}>
+              <LatestNews/>
+            </Col>
+            <Col xs={12} md={3}>
+              <Topics/>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }

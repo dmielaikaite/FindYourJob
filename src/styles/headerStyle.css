@@ -1,0 +1,41 @@
+.navbar{
+  background-color: #6fceab;
+}
+
+.navbar-brand{
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #FFFFFF;
+}
+
+.navbar-nav{
+  float: right;
+  margin: auto;
+  padding: 15px;
+  list-style: none;
+}
+
+.nav-item .newsButton{
+  background-color: #FFFFFF;
+  border: 1px solid #000000;
+  color: #6fceab;
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 5px 15px 5px 15px;
+}
+
+.nav-item .newsButton:hover{
+  background-color: #6fceab;
+  border: 1px solid #000000;
+  color: #FFFFFF;
+}
+
+img.userProfilePicture-responsive.userProfilePicture-thumbnail{
+  margin-top: 10px;
+  height: 40px;
+}
+
+.contentOfMiddleSection{
+  margin: auto;
+  width: 30%;
+}

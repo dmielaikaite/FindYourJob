@@ -26,6 +26,7 @@ class SignInModal extends Component{
 
   componentWillReceiveProps(nextprops){
     this.setState(nextprops);
+    console.log(nextprops);
   }
 
   closeModal(e){
