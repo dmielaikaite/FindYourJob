@@ -4,6 +4,7 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import Header from './header.js';
 import LatestNews from './LatestNews/latestNews.js';
 import Topics from './LatestNews/topics.js';
+import Footer from './footer.js';
 
 class MainPage extends Component{
   render() {
@@ -20,6 +21,7 @@ class MainPage extends Component{
             </Col>
           </Row>
         </Grid>
+      <Footer/>
       </div>
     );
   }

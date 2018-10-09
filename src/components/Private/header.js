@@ -22,7 +22,7 @@ class Header extends Component{
                 <a className="navbar-brand" href="/private">Nature</a>
               </Col>
               <Col xs={12} md={6}>
-                <div className="contentOfMiddleSection">
+                <div className="contentOfMiddle">
                   <Image src={'/src/assets/coverPhoto.jpg'} responsive thumbnail bsClass="userProfilePicture"/>
                   <div>
                     User email address
