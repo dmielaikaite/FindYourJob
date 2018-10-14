@@ -12,8 +12,6 @@ class LatestNews extends Component{
     }
   }
 
-
-
   render() {
     return (
       <div className="latestNewsContainer">

@@ -17,6 +17,29 @@ export function newsFetchDataSuccess(news){
 export function newsHasErrored(bool){
   return {
     type: 'NEWS_HAS_ERRORED',
-    newsHasRerrored: bool  
+    newsHasRerrored: bool
+  }
+}
+
+export function getAllTopics(url){
+  return (dispatch) => {
+    fetch(url)
+      .then(response => response.json())
+      .then((topics) => dispatch(topicsFetchDataSuccess(topics)))
+      .catch(() => dispatch(topicsHasErrored(true)));
+  };
+}
+
+export function topicsFetchDataSuccess(topics){
+  return{
+    type: 'TOPICS_FETCH_DATA_SUCCESS',
+    topics
+  }
+}
+
+export function topicsHasErrored(bool){
+  return{
+    type: 'TOPICS_HAS_ERRORED',
+    topicsHasErrored: bool
   }
 }

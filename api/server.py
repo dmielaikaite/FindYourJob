@@ -65,6 +65,13 @@ def getAllNews():
     data = c.fetchall()
     return jsonify(data)
 
+@app.route('/api/getNewsTopics', methods=['GET'])
+def getNewsTopics():
+    sql = "SELECT DISTINCT topic FROM news";
+    c.execute(sql)
+    topic = c.fetchall()
+    return jsonify(topic)
+
 @app.route('/api/reload')
 def reload():
     global to_reload
