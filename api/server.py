@@ -58,6 +58,13 @@ def getUser():
         newResponseObject['gender']= data[0][5]
     return jsonify(newResponseObject)
 
+@app.route('/api/getNews', methods=['GET'])
+def getAllNews():
+    sql = "SELECT * FROM news";
+    c.execute(sql)
+    data = c.fetchall()
+    return jsonify(data)
+
 @app.route('/api/reload')
 def reload():
     global to_reload

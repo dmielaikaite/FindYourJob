@@ -10,7 +10,7 @@ class Footer extends Component{
         <Grid>
           <Row>
             <Col xs={12} md={12}>
-              @Donata
+              @Donata -> nature 
             </Col>
           </Row>
         </Grid>
