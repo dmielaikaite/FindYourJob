@@ -2,9 +2,6 @@
 
 # dependencies
 /node_modules
-/api/bin
-/api/include
-/api/lib
 
 # webpack bundle
 /dist
