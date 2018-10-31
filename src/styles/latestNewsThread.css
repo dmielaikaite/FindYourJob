@@ -1,0 +1,61 @@
+.latestNewsContainer{
+
+}
+
+.oneNewComponent{
+  border: 2px solid #000000;
+  border-radius: 5px;
+  padding: 10px 0px 10px 0px;
+  margin: 9px;
+  font-family: "Verdana", Serif, Sans-serif;
+}
+
+.newTitle{
+  font-weight: bold;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.newDescription{
+  padding: 10px 0px 10px 10px;
+}
+
+.newMainInfo{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+#newTopic{
+  margin-right: 10px;
+  color: #6fceab;
+}
+
+/* Container holding the image and the text */
+.container {
+    position: relative;
+}
+
+/* Bottom right text */
+.text-block {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.topicImageTitle{
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: larger;
+  text-transform: uppercase;
+  display: list-item;
+}

@@ -16,6 +16,7 @@ module.exports = {
  output: {
  path: paths.DIST,
  filename: 'app.bundle.js',
+ publicPath: '/'
 },
 // Tell webpack to use html plugin
 plugins: [
@@ -47,10 +48,17 @@ module: {
   },{
    test: /\.(png|jpg|gif)$/,
    use: ['file-loader'],
+  },{
+    test: /\.js$/,
+    exclude: /node_modules/,
+    use: ['babel-loader', 'eslint-loader']
   },
 ],
 },
 resolve: {
  extensions: ['.js', '.jsx'],
+},
+devServer: {
+  historyApiFallback: true,
 },
 };
